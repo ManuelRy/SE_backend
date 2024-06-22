@@ -6,7 +6,6 @@
     <div class="mb-6 flex space-x-4">
         <button onclick="filterUsers('delivery')" class="p-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-200">Delivery</button>
         <button onclick="filterUsers('storage')" class="p-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-200">Storage</button>
-        <button onclick="filterUsers('all')" class="p-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-200">All</button>
     </div>
     <div class="bg-white p-6 rounded-lg shadow-lg">
         <table class="w-full">

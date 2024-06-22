@@ -14,7 +14,7 @@
             @foreach($lockers as $locker)
                 <div class="flex flex-col items-center">
                     <svg class="w-16 h-16 {{ $locker->status == 'Rented' ? 'text-red-500' : 'text-green-500' }}" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 0a6 6 0 00-6 6v4a6 6 0 00-1 11.94V20h14v-.06A6 6 0 0016 10V6a6 6 0 00-6-6zM9 18v-2h2v2H9zm2-4H9v-2h2v2zm2-4H7V6a4 4 0 018 0v4z" />
+                        <path d="M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2m0 2v16h8V4zm2 9h2v4h-2zm0-7h4v1.5h-4zm0 3h4v1.5h-4z" />
                     </svg>
                     <span class="mt-2">{{ $locker->locker_number }}</span>
                 </div>
