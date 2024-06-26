@@ -10,15 +10,12 @@
     <div class="bg-white p-6 rounded-lg shadow-lg">
         <table class="w-full">
             <thead class="bg-yellow-100 text-yellow-600">
-                <tr>
+                <tr id="table-header">
                     <th class="p-3 text-left">ID</th>
-                    <th class="p-3 text-left">First Name</th>
-                    <th class="p-3 text-left">Last Name</th>
-                    <th class="p-3 text-left">Phone Number</th>
+                    <th class="p-3 text-left" id="sender-header">Sender</th>
                     <th class="p-3 text-left">User Type</th>
-                    <th class="p-3 text-left">Receiver Phone Number</th>
-                    <th class="p-3 text-left">Sender Phone Number</th>
-                    <th class="p-3 text-left">Locker PIN</th>
+                    <th class="p-3 text-left" id="receiver-header">Receiver</th>
+                    <th class="p-3 text-left" id="locker-pin-header">Locker PIN</th>
                     <th class="p-3 text-left">Locker Numbers</th>
                 </tr>
             </thead>
@@ -26,13 +23,10 @@
                 @foreach($users as $user)
                     <tr class="border-b border-gray-200 user-row" data-user-type="{{ $user->user_type }}">
                         <td class="p-3">{{ $user->id }}</td>
-                        <td class="p-3">{{ $user->first_name }}</td>
-                        <td class="p-3">{{ $user->last_name }}</td>
-                        <td class="p-3">{{ $user->phone_number }}</td>
+                        <td class="p-3 sender-cell">{{ $user->phone_number }}</td>
                         <td class="p-3">{{ $user->user_type }}</td>
-                        <td class="p-3">{{ $user->receiver_phone_number }}</td>
-                        <td class="p-3">{{ $user->sender_phone_number }}</td>
-                        <td class="p-3">{{ $user->locker_pin }}</td>
+                        <td class="p-3 receiver-cell">{{ $user->receiver_phone_number }}</td>
+                        <td class="p-3 locker-pin-cell">{{ $user->locker_pin }}</td>
                         <td class="p-3">
                             @foreach($user->lockers as $locker)
                                 {{ $locker->locker_number }}@if(!$loop->last), @endif
@@ -48,6 +42,26 @@
 <script>
     function filterUsers(type) {
         const rows = document.querySelectorAll('.user-row');
+        const senderHeader = document.getElementById('sender-header');
+        const receiverHeader = document.getElementById('receiver-header');
+        const lockerPinHeader = document.getElementById('locker-pin-header');
+        const lockerPinCells = document.querySelectorAll('.locker-pin-cell');
+        const receiverCells = document.querySelectorAll('.receiver-cell');
+
+        if (type === 'delivery') {
+            senderHeader.textContent = 'Sender';
+            receiverHeader.style.display = '';
+            lockerPinHeader.style.display = 'none';
+            receiverCells.forEach(cell => cell.style.display = '');
+            lockerPinCells.forEach(cell => cell.style.display = 'none');
+        } else if (type === 'storage') {
+            senderHeader.textContent = 'User';
+            receiverHeader.style.display = 'none';
+            lockerPinHeader.style.display = '';
+            receiverCells.forEach(cell => cell.style.display = 'none');
+            lockerPinCells.forEach(cell => cell.style.display = '');
+        }
+
         rows.forEach(row => {
             if (type === 'all' || row.dataset.userType === type) {
                 row.style.display = '';
@@ -56,5 +70,8 @@
             }
         });
     }
+
+    // Initially set to 'delivery' mode
+    filterUsers('delivery');
 </script>
 @endsection
