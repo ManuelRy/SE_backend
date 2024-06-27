@@ -1,10 +1,6 @@
 <?php
 
 
-
-
-namespace App\Models;
-
 // app/Models/User.php
 
 namespace App\Models;
