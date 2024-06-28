@@ -14,9 +14,9 @@
                 <thead class="bg-yellow-100 text-yellow-600">
                     <tr>
                         <th class="p-3 text-center">ID</th>
-                        <th class="p-3 text-center">Sender</th>
-                        <th class="p-3 text-center">User Type</th>
                         <th class="p-3 text-center">Receiver</th>
+                        {{-- <th class="p-3 text-center">Sender</th> --}}
+                        <th class="p-3 text-center">Package Size</th>
                         <th class="p-3 text-center">Locker PIN</th>
                         <th class="p-3 text-center">Locker Numbers</th>
                     </tr>
@@ -26,7 +26,7 @@
                         <tr class="border-b border-gray-200">
                             <td class="p-3 text-center">{{ $user->id }}</td>
                             <td class="p-3 text-center">{{ $user->receiver }}</td>
-                            <td class="p-3 text-center">{{ $user->user_type }}</td>
+                            {{-- <td class="p-3 text-center">{{ $user->user_type }}</td> --}}
                             <td class="p-3 text-center">{{ $user->package_size }}</td>
                             <td class="p-3 text-center">{{ $user->pin_code }}</td>
                             <td class="p-3 text-center">{{ $user->locker_number }}</td>

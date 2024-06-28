@@ -17,7 +17,8 @@ return new class extends Migration
             $table->tinyInteger('is_used')->default(0);
             $table->foreignId('receiver_id')->nullable()->constrained('delivery_users')->onDelete('cascade');
             $table->foreignId('storage_id')->nullable()->constrained('storage_users')->onDelete('cascade');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 
