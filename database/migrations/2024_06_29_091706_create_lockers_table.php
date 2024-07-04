@@ -12,14 +12,12 @@ class CreateLockersTable extends Migration
     {
         if (!Schema::hasTable('lockers')) {
             Schema::create('lockers', function (Blueprint $table) {
-                $table->id();
-                $table->integer('locker_number')->unique();
+                $table->id('locker_id');
+                $table->integer('locker_number');
                 $table->enum('size', ['Small', 'Medium', 'Large']);
                 $table->enum('status', ['Free', 'Rented'])->default('Free');
-                $table->unsignedBigInteger('user_id')->nullable();
-                $table->string('pin', 255)->nullable(); // Ensure it's long enough for a hashed value
+                $table->foreignId('pin_id')->nullable()->constrained('pin')->onDelete('cascade');; // constrained table
                 $table->timestamps();
-                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             });
         }
     }

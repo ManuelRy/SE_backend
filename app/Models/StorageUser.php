@@ -9,5 +9,6 @@ class StorageUser extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user', 'user_type', 'package_size', 'locker_pin', 'locker_number'];
+    protected $table = 'storage_users';
+    protected $fillable = ['user', 'user_type', 'package_size', 'locker_number'];
 }

@@ -9,31 +9,31 @@ class Locker extends Model
 {
     use HasFactory;
 
+    protected $table = 'lockers';
     protected $fillable = [
-        'locker_number', 
-        'size', 
-        'status', 
-        'user_id', 
-        'pin'
+        'locker_number',
+        'size',
+        'status',
+        'pin',
     ];
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        static::creating(function ($locker) {
-            $locker->pin = Hash::make($locker->pin);
-        });
+    //     static::creating(function ($locker) {
+    //         $locker->pin = Hash::make($locker->pin);
+    //     });
 
-        static::updating(function ($locker) {
-            if ($locker->isDirty('pin')) {
-                $locker->pin = Hash::make($locker->pin);
-            }
-        });
-    }
-    
+    //     static::updating(function ($locker) {
+    //         if ($locker->isDirty('pin')) {
+    //             $locker->pin = Hash::make($locker->pin);
+    //         }
+    //     });
+    // }
+
 }
