@@ -9,5 +9,6 @@ class DeliveryUser extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['receiver', 'user_type', 'package_size', 'pin_code', 'locker_number'];
+    protected $table = 'delivery_users';
+    protected $fillable = ['receiver', 'user_type', 'package_size', 'locker_number'];
 }

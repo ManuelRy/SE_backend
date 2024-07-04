@@ -13,40 +13,38 @@ class LockerSeeder extends Seeder
     {
         $lockers = [
             [
-                'locker_number' => 106,
+                'locker_number' => 101,
                 'size' => 'Small',
                 'status' => 'Rented',
-                'user_id' => 1,
-                'pin' => '23635',
+                'pin_id' => 1,
             ],
             [
-                'locker_number' => 107,
+                'locker_number' => 102,
                 'size' => 'Medium',
                 'status' => 'Rented',
-                'user_id' => 2,
-                'pin' => '34746',
+                'pin_id' => 2,
             ],
-            [
-                'locker_number' => 108,
-                'size' => 'Large',
-                'status' => 'Free',
-                'user_id' => 3,
-                'pin' => '45857',
-            ],
-            [
-                'locker_number' => 109,
-                'size' => 'Small',
-                'status' => 'Free',
-                'user_id' => 4,
-                'pin' => '56968',
-            ],
-            [
-                'locker_number' => 110,
-                'size' => 'Medium',
-                'status' => 'Rented',
-                'user_id' => 5,
-                'pin' => '67879',
-            ],
+            // [
+            //     'locker_number' => 108,
+            //     'size' => 'Large',
+            //     'status' => 'Free',
+            //     'user_id' => 3,
+            //     'pin' => '45857',
+            // ],
+            // [
+            //     'locker_number' => 109,
+            //     'size' => 'Small',
+            //     'status' => 'Free',
+            //     'user_id' => 4,
+            //     'pin' => '56968',
+            // ],
+            // [
+            //     'locker_number' => 110,
+            //     'size' => 'Medium',
+            //     'status' => 'Rented',
+            //     'user_id' => 5,
+            //     'pin' => '67879',
+            // ],
         ];
 
         foreach ($lockers as $locker) {
