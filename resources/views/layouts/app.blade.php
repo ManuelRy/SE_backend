@@ -109,11 +109,13 @@
         function toggleDropdown() {
             const dropdown = document.getElementById('dropdown');
             dropdown.classList.toggle('hidden');
-            dropdown.classList.toggle('visible');
+            dropdown.classList.toggle('transition-opacity');
         }
 
         function toggleNav() {
             const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('hidden');
+            navMenu.classList.toggle('block');
             navMenu.classList.toggle('transition-hidden');
             navMenu.classList.toggle('transition-visible');
         }

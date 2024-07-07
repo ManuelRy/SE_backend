@@ -38,19 +38,14 @@
     const userComparisonChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Delivery Users', 'Storage Users'], // We use these labels for positioning
+            labels: ['Delivery Users', 'Storage Users'],
             datasets: [{
-                label: 'Delivery Users',
-                data: [deliveryUserCount, 0],
-                backgroundColor: 'rgba(255, 165, 0, 0.8)',
-                borderColor: 'rgba(255, 165, 0, 1)',
-                borderWidth: 3
-            }, {
-                label: 'Storage Users',
-                data: [0, storageUserCount],
-                backgroundColor: 'rgba(0, 51, 153, 0.8)',
-                borderColor: 'rgba(0, 51, 153, 1)',
-                borderWidth: 3
+                label: 'Users',
+                data: [deliveryUserCount, storageUserCount],
+                backgroundColor: ['rgba(255, 165, 0, 0.8)', 'rgba(0, 51, 153, 0.8)'],
+                borderColor: ['rgba(255, 165, 0, 1)', 'rgba(0, 51, 153, 1)'],
+                borderWidth: 3,
+                barThickness: 50  // Adjust the thickness here
             }]
         },
         options: {
@@ -71,7 +66,9 @@
                 },
                 x: {
                     ticks: {
-                        display: false // Hide x-axis labels
+                        font: {
+                            size: 14
+                        }
                     },
                     grid: {
                         display: false
@@ -80,37 +77,21 @@
             },
             plugins: {
                 legend: {
-                    labels: {
-                        font: {
-                            size: 16
-                        }
-                    }
+                    display: false
                 },
                 tooltip: {
-                    enabled: false
-                },
-                afterDatasetsDraw: (chart) => {
-                    const ctx = chart.ctx;
-                    const chartArea = chart.chartArea;
-                    const labels = chart.data.labels;
-
-                    chart.data.datasets.forEach((dataset, datasetIndex) => {
-                        dataset.data.forEach((value, index) => {
-                            if (value > 0 || (value === 0 && datasetIndex === 0)) {
-                                const bar = chart.getDatasetMeta(datasetIndex).data[index];
-                                const xPos = bar.x;
-                                const yPos = chartArea.bottom + 20; // Position text below the chart
-
-                                ctx.save();
-                                ctx.textAlign = 'center';
-                                ctx.textBaseline = 'middle';
-                                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-                                ctx.font = 'bold 14px Arial';
-                                ctx.fillText(labels[index], xPos, yPos);
-                                ctx.restore();
-                            }
-                        });
-                    });
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                    titleFont: {
+                        size: 16,
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        size: 14
+                    },
+                    footerFont: {
+                        size: 12
+                    },
+                    footerMarginTop: 8
                 }
             }
         }
