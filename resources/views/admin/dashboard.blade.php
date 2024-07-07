@@ -35,26 +35,21 @@
 
     const ctx = document.getElementById('userComparisonChart').getContext('2d');
 
-    // Create gradient
-    const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, 'rgba(255, 165, 0, 0.5)'); 
-    gradient.addColorStop(1, 'rgba(255, 165, 0, 0.2)'); 
-
     const userComparisonChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Delivery Users', 'Storage Users'],
+            labels: ['Delivery Users', 'Storage Users'], // We use these labels for positioning
             datasets: [{
                 label: 'Delivery Users',
-                data: [deliveryUserCount, 0], // Only show for Delivery Users
-                backgroundColor: 'rgba(255, 165, 0, 0.8)',   // Delivery Users
-                borderColor: 'rgba(255, 165, 0, 1)',     // Delivery Users
+                data: [deliveryUserCount, 0],
+                backgroundColor: 'rgba(255, 165, 0, 0.8)',
+                borderColor: 'rgba(255, 165, 0, 1)',
                 borderWidth: 3
             }, {
                 label: 'Storage Users',
-                data: [0, storageUserCount], // Only show for Storage Users
-                backgroundColor: 'rgba(0, 51, 153, 0.8)',   // Storage Users
-                borderColor: 'rgba(0, 51, 153, 1)',       // Storage Users
+                data: [0, storageUserCount],
+                backgroundColor: 'rgba(0, 51, 153, 0.8)',
+                borderColor: 'rgba(0, 51, 153, 1)',
                 borderWidth: 3
             }]
         },
@@ -76,9 +71,7 @@
                 },
                 x: {
                     ticks: {
-                        font: {
-                            size: 14
-                        }
+                        display: false // Hide x-axis labels
                     },
                     grid: {
                         display: false
@@ -94,18 +87,30 @@
                     }
                 },
                 tooltip: {
-                    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                    titleFont: {
-                        size: 16,
-                        weight: 'bold'
-                    },
-                    bodyFont: {
-                        size: 14
-                    },
-                    footerFont: {
-                        size: 12
-                    },
-                    footerMarginTop: 8
+                    enabled: false
+                },
+                afterDatasetsDraw: (chart) => {
+                    const ctx = chart.ctx;
+                    const chartArea = chart.chartArea;
+                    const labels = chart.data.labels;
+
+                    chart.data.datasets.forEach((dataset, datasetIndex) => {
+                        dataset.data.forEach((value, index) => {
+                            if (value > 0 || (value === 0 && datasetIndex === 0)) {
+                                const bar = chart.getDatasetMeta(datasetIndex).data[index];
+                                const xPos = bar.x;
+                                const yPos = chartArea.bottom + 20; // Position text below the chart
+
+                                ctx.save();
+                                ctx.textAlign = 'center';
+                                ctx.textBaseline = 'middle';
+                                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                                ctx.font = 'bold 14px Arial';
+                                ctx.fillText(labels[index], xPos, yPos);
+                                ctx.restore();
+                            }
+                        });
+                    });
                 }
             }
         }
