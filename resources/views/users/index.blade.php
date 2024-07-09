@@ -49,7 +49,7 @@
                     @foreach ($storageUsers as $user)
                         <tr class="border-b border-gray-200">
                             <td class="p-3 text-center">{{ $user->id }}</td>
-                            <td class="p-3 text-center">{{ $user->user_type }}</td>
+                            <td class="p-3 text-center">{{ $user->user }}</td>
                             <td class="p-3 text-center">{{ $user->storage_size }}</td>
                             <td class="p-3 text-center">{{ $user->locker_pin }}</td>
                             <td class="p-3 text-center">{{ $user->locker_number }}</td>
