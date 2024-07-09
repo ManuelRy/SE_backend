@@ -15,7 +15,6 @@
                     <tr>
                         <th class="p-3 text-center">ID</th>
                         <th class="p-3 text-center">Receiver</th>
-                        {{-- <th class="p-3 text-center">Sender</th> --}}
                         <th class="p-3 text-center">Package Size</th>
                         <th class="p-3 text-center">Locker PIN</th>
                         <th class="p-3 text-center">Locker Numbers</th>
@@ -26,9 +25,10 @@
                         <tr class="border-b border-gray-200">
                             <td class="p-3 text-center">{{ $user->id }}</td>
                             <td class="p-3 text-center">{{ $user->receiver }}</td>
-                            {{-- <td class="p-3 text-center">{{ $user->user_type }}</td> --}}
                             <td class="p-3 text-center">{{ $user->package_size }}</td>
-                            <td class="p-3 text-center">{{ $user->pin_code }}</td>
+                            <td class="p-3 text-center">
+                                <span class="locker-pin" onclick="promptPassword(this)" data-pin="{{ $user->pin_code }}">****</span>
+                            </td>
                             <td class="p-3 text-center">{{ $user->locker_number }}</td>
                         </tr>
                     @endforeach
@@ -51,7 +51,9 @@
                             <td class="p-3 text-center">{{ $user->id }}</td>
                             <td class="p-3 text-center">{{ $user->user }}</td>
                             <td class="p-3 text-center">{{ $user->storage_size }}</td>
-                            <td class="p-3 text-center">{{ $user->locker_pin }}</td>
+                            <td class="p-3 text-center">
+                                <span class="locker-pin" onclick="promptPassword(this)" data-pin="{{ $user->locker_pin }}">****</span>
+                            </td>
                             <td class="p-3 text-center">{{ $user->locker_number }}</td>
                         </tr>
                     @endforeach
@@ -60,7 +62,19 @@
         </div>
     </div>
 
+    <!-- Password Prompt Modal -->
+    <div id="passwordModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl mb-4">Enter Admin Password</h2>
+            <input type="password" id="adminPassword" class="w-full p-2 border rounded-lg mb-4" placeholder="Password">
+            <button onclick="verifyPassword()" class="p-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-200">Submit</button>
+            <button onclick="closeModal()" class="p-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-200">Cancel</button>
+        </div>
+    </div>
+
     <script>
+        let currentElement;
+
         function filterUsers(type) {
             const deliveryTable = document.getElementById('delivery-table');
             const storageTable = document.getElementById('storage-table');
@@ -74,7 +88,48 @@
             }
         }
 
+        function promptPassword(element) {
+            currentElement = element;
+            document.getElementById('passwordModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('passwordModal').style.display = 'none';
+        }
+
+        function verifyPassword() {
+            const password = document.getElementById('adminPassword').value;
+            fetch('{{ route("admin.verifyPassword") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ password: password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    currentElement.innerText = currentElement.getAttribute('data-pin');
+                } else {
+                    alert('Incorrect password.');
+                }
+                closeModal();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
         // Initially set to 'delivery' mode
         filterUsers('delivery');
     </script>
+
+    <style>
+        .locker-pin {
+            cursor: pointer;
+            color: #3182ce; /* blue */
+        }
+        .locker-pin:hover {
+            text-decoration: underline;
+        }
+    </style>
 @endsection

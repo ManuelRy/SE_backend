@@ -26,5 +26,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/admin/profile/change-password', [ProfileController::class, 'changePassword'])->name('admin.change_password');
 });
 
+Route::post('/admin/verify-password', [AdminController::class, 'verifyPassword'])->name('admin.verifyPassword');
+
 Route::resource('users', UserController::class);
 Route::resource('lockers', LockerController::class);
