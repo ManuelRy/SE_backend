@@ -41,7 +41,7 @@
                         <th class="p-3 text-center">ID</th>
                         <th class="p-3 text-center">User</th>
                         <th class="p-3 text-center">Storage Size</th>
-                        <th class="p-3 text-center">Locker PIN</th>
+                        <th class="p-3 text-center">Storage PIN</th>
                         <th class="p-3 text-center">Locker Number</th>
                     </tr>
                 </thead>
