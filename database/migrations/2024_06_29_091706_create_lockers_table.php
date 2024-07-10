@@ -13,7 +13,7 @@ class CreateLockersTable extends Migration
         if (!Schema::hasTable('lockers')) {
             Schema::create('lockers', function (Blueprint $table) {
                 $table->id('locker_id');
-                $table->integer('locker_number');
+                $table->string('locker_number');
                 $table->enum('size', ['Small', 'Medium', 'Large']);
                 $table->enum('status', ['Free', 'Rented'])->default('Free');
                 $table->foreignId('pin_id')->nullable()->constrained('pin')->onDelete('cascade');; // constrained table
