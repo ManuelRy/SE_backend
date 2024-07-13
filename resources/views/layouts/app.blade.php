@@ -28,6 +28,10 @@
         .transition-opacity {
             @apply transition-all duration-500 ease-in-out;
         }
+
+        .compact-navbar {
+            max-height: 12rem; /* Set a max height when compacted */
+        }
     </style>
 </head>
 
@@ -43,33 +47,29 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16m-7 6h7" />
+                            d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
             </div>
+            <div id="profile-settings" class="relative mb-6 text-center hidden md:block">
+                <button onclick="toggleDropdown()"
+                    class="flex items-center justify-center w-12 h-12 bg-yellow-600 rounded-full mx-auto">
+                    <span class="sr-only">Admin</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20"
+                        fill="currentColor">
+                        <path
+                            d="M10 11c2.21 0 4-1.79 4-4S12.21 3 10 3 6 4.79 6 7s1.79 4 4 4zm-6 7c0-3.31 2.69-6 6-6s6 2.69 6 6H4z" />
+                    </svg>
+                </button>
+                <div id="dropdown" class="hidden absolute bg-white text-black p-2 rounded shadow mt-2 transition-opacity">
+                    <a href="{{ route('admin.change_password_form') }}" class="block p-2 hover:bg-yellow-100">Change Password</a>
+                    <form method="POST" action="{{ route('admin.logout') }}">
+                        @csrf
+                        <button type="submit" class="block p-2 text-left hover:bg-yellow-100">Logout</button>
+                    </form>
+                </div>
+            </div>
             <ul id="nav-menu" class="hidden md:block text-center transition-opacity">
-                @if (Auth::check())
-                    <li class="relative mb-6">
-                        <button onclick="toggleDropdown()"
-                            class="flex items-center justify-center w-12 h-12 bg-yellow-600 rounded-full mx-auto">
-                            <span class="sr-only">Admin</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path
-                                    d="M10 11c2.21 0 4-1.79 4-4S12.21 3 10 3 6 4.79 6 7s1.79 4 4 4zm-6 7c0-3.31 2.69-6 6-6s6 2.69 6 6H4z" />
-                            </svg>
-                        </button>
-                        <div id="dropdown"
-                            class="hidden absolute bg-white text-black p-2 rounded shadow mt-2 transition-opacity">
-                            <a href="{{ route('admin.change_password_form') }}"
-                                class="block p-2 hover:bg-yellow-100">Change Password</a>
-                            <form method="POST" action="{{ route('admin.logout') }}">
-                                @csrf
-                                <button type="submit" class="block p-2 text-left hover:bg-yellow-100">Logout</button>
-                            </form>
-                        </div>
-                    </li>
-                @endif
                 <li class="mb-2">
                     <a href="{{ route('admin.dashboard') }}"
                         class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}">
@@ -114,10 +114,13 @@
 
         function toggleNav() {
             const navMenu = document.getElementById('nav-menu');
+            const profileSettings = document.getElementById('profile-settings');
             navMenu.classList.toggle('hidden');
             navMenu.classList.toggle('block');
             navMenu.classList.toggle('transition-hidden');
             navMenu.classList.toggle('transition-visible');
+            profileSettings.classList.toggle('hidden');
+            navMenu.classList.toggle('compact-navbar');
         }
     </script>
 </body>

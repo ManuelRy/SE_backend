@@ -66,7 +66,7 @@
     <div id="passwordModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <h2 class="text-2xl mb-4">Enter Admin Password</h2>
-            <input type="password" id="adminPassword" class="w-full p-2 border rounded-lg mb-4" placeholder="Password">
+            <input type="password" id="adminPassword" class="w-full p-2 border rounded-lg mb-4" placeholder="Password" onkeydown="handleKeyDown(event)">
             <button onclick="verifyPassword()" class="p-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-200">Submit</button>
             <button onclick="closeModal()" class="p-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-200">Cancel</button>
         </div>
@@ -95,6 +95,12 @@
 
         function closeModal() {
             document.getElementById('passwordModal').style.display = 'none';
+        }
+
+        function handleKeyDown(event) {
+            if (event.key === 'Enter') {
+                verifyPassword();
+            }
         }
 
         function verifyPassword() {
