@@ -13,39 +13,52 @@ class LockerSeeder extends Seeder
     {
         $lockers = [
             [
-                'locker_number' => 106,
+                'locker_number' => 'S-01',
                 'size' => 'Small',
-                'status' => 'Rented',
-                'user_id' => 1,
-                'pin' => '23635',
+                'status' => 'Free',
+                'pin_id' => NULL,
             ],
             [
-                'locker_number' => 107,
+                'locker_number' => 'S-02',
+                'size' => 'Small',
+                'status' => 'Free',
+                'pin_id' => NULL,
+            ],
+            [
+                'locker_number' => 'S-03',
+                'size' => 'Small',
+                'status' => 'Free',
+                'pin_id' => NULL,
+            ],
+            [
+                'locker_number' => 'M-01',
                 'size' => 'Medium',
-                'status' => 'Rented',
-                'user_id' => 2,
-                'pin' => '34746',
+                'status' => 'Free',
+                'pin_id' => NULL,
             ],
             [
-                'locker_number' => 108,
+                'locker_number' => 'M-02',
+                'size' => 'Medium',
+                'status' => 'Free',
+                'pin_id' => NULL,
+            ],
+            [
+                'locker_number' => 'L-01',
                 'size' => 'Large',
-                'status' => 'Free',
-                'user_id' => 3,
-                'pin' => '45857',
-            ],
-            [
-                'locker_number' => 109,
-                'size' => 'Small',
-                'status' => 'Free',
-                'user_id' => 4,
-                'pin' => '56968',
-            ],
-            [
-                'locker_number' => 110,
-                'size' => 'Medium',
                 'status' => 'Rented',
-                'user_id' => 5,
-                'pin' => '67879',
+                'pin_id' => NULL,
+            ],
+            [
+                'locker_number' => 'L-02',
+                'size' => 'Large',
+                'status' => 'Rented',
+                'pin_id' => NULL,
+            ],
+            [
+                'locker_number' => 'L-03',
+                'size' => 'Large',
+                'status' => 'Rented',
+                'pin_id' => NULL,
             ],
         ];
 

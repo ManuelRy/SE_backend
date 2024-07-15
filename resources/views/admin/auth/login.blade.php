@@ -22,8 +22,6 @@
 
         .form-container {
             animation: slideIn 1s ease-in-out forwards;
-            width: 55%; /* Adjust width here */
-            height: 60%; /* Adjust height here */
         }
 
         @keyframes slideIn {
@@ -35,10 +33,10 @@
 </head>
 <body class="bg-yellow-100 flex justify-center items-center h-screen relative">
     <div class="background-images"></div>
-    <div class="bg-white p-6 rounded shadow-md relative z-10 form-container flex flex-col items-center justify-center">
-        <img src="{{ asset('assets/images/logo.png') }}" alt="Smartbox Logo" class="h-50 w-50 mb-4 rounded-full">
+    <div class="bg-white p-6 rounded shadow-md relative z-10 form-container flex flex-col items-center justify-center w-full sm:w-4/5 md:w-3/5 lg:w-2/5 xl:w-1/3">
+        <img src="{{ asset('assets/images/logo.png') }}" alt="Smartbox Logo" class="h-20 sm:h-24 md:h-32 lg:h-40 w-auto mb-4 rounded-full">
         <h2 class="text-2xl mb-4 font-bold text-center text-yellow-700">Login</h2>
-        <form method="POST" action="{{ route('admin.login') }}" class="w-full max-w-lg">
+        <form method="POST" action="{{ route('admin.login') }}" class="w-full px-4">
             @csrf
             <div class="mb-4">
                 <label class="block mb-1 font-bold text-yellow-700" for="email">Email</label>
