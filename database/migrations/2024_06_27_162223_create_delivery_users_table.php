@@ -15,7 +15,7 @@ class CreateDeliveryUsersTable extends Migration
             $table->string('user_type')->default('Delivery');
             $table->string('package_size');
             // $table->string('pin_code');
-            $table->integer('locker_number')->default(101);
+            $table->string('locker_number');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
