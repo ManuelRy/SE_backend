@@ -16,14 +16,14 @@ class DeliveryUserSeeder extends Seeder
             'receiver' => '012345678',
             'user_type' => 'Delivery',
             'package_size' => 'Small',
-            'locker_number' => 101,
+            'locker_number' => 'S-01',
         ]);
 
         DeliveryUser::create([
             'receiver' => '098765432',
             'user_type' => 'Delivery',
-            'package_size' => 'Medium',
-            'locker_number' => 101,
+            'package_size' => 'Small',
+            'locker_number' => 'S-02',
         ]);
     }
 }

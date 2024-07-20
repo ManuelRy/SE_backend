@@ -45,19 +45,19 @@ class LockerSeeder extends Seeder
             [
                 'locker_number' => 'L-01',
                 'size' => 'Large',
-                'status' => 'Rented',
+                'status' => 'Free',
                 'pin_id' => NULL,
             ],
             [
                 'locker_number' => 'L-02',
                 'size' => 'Large',
-                'status' => 'Rented',
+                'status' => 'Free',
                 'pin_id' => NULL,
             ],
             [
                 'locker_number' => 'L-03',
                 'size' => 'Large',
-                'status' => 'Rented',
+                'status' => 'Free',
                 'pin_id' => NULL,
             ],
         ];

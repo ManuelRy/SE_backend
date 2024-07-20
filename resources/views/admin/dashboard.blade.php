@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto p-6" style="background-color: #FFEDD5;">
+<div class="min-h-screen p-6" style="background-color: #FFEDD5;">
     <h1 class="text-3xl font-bold mb-6 text-yellow-600">Dashboard</h1>
 
     <div class="bg-white shadow-md rounded-lg p-8">
@@ -45,7 +45,7 @@
                 backgroundColor: ['rgba(255, 165, 0, 0.8)', 'rgba(0, 51, 153, 0.8)'],
                 borderColor: ['rgba(255, 165, 0, 1)', 'rgba(0, 51, 153, 1)'],
                 borderWidth: 3,
-                barThickness: 50  // Adjust the thickness here
+                barThickness: 50
             }]
         },
         options: {

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,4 +18,8 @@ class Locker extends Model
         'pin',
     ];
 
+    public function pin()
+    {
+        return $this->belongsTo(Pin::class);
+    }
 }
