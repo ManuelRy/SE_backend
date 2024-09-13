@@ -36,6 +36,7 @@
                 <table id="delivery-table" class="w-full">
                     <thead class="bg-yellow-100 text-yellow-600">
                         <tr>
+                            <th class="p-3 text-center">Sender</th>
                             <th class="p-3 text-center">Receiver</th>
                             <th class="p-3 text-center">Package Size</th>
                             <th class="p-3 text-center">Locker PIN</th>
@@ -46,6 +47,7 @@
                     <tbody>
                         @foreach ($deliveryUsers as $user)
                             <tr class="border-b border-gray-200">
+                                <td class="p-3 text-center">{{ $user->sender }}</td>
                                 <td class="p-3 text-center">{{ $user->receiver }}</td>
                                 <td class="p-3 text-center">{{ $user->package_size }}</td>
                                 <td class="p-3 text-center">{{ $user->pin_code }}</td>
@@ -85,7 +87,7 @@
                                 <td class="p-3 text-center">{{ $user->user }}</td>
                                 <td class="p-3 text-center">{{ $user->storage_size }}</td>
                                 <td class="p-3 text-center">{{ $user->locker_pin }}</td>
-                                
+
                                 <td class="p-3 text-center">{{ $user->locker_number }}</td>
                                 <td class="p-3 text-center">
                                     @if ($user->is_used)

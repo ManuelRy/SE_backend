@@ -13,7 +13,7 @@ class CreateStorageUsersTable extends Migration
             $table->string('user');
             $table->string('user_type')->default('Storage');
             $table->string('storage_size');
-            // $table->integer('pin_code');
+            $table->integer('chat_id');
             $table->string('locker_number');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
