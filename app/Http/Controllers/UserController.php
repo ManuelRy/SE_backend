@@ -14,12 +14,12 @@ class UserController extends Controller
 
         $deliveryUsers = DB::table('delivery_users')
             ->leftJoin('pin', 'delivery_users.id', '=', 'pin.receiver_id')
-            ->select('delivery_users.*', 'pin.pin_code')
+            ->select('delivery_users.*', 'pin.pin_code', 'pin.is_used')
             ->orderBy('delivery_users.created_at', 'desc');
 
         $storageUsers = DB::table('storage_users')
             ->leftJoin('pin', 'storage_users.id', '=', 'pin.storage_id')
-            ->select('storage_users.*', 'pin.pin_code as locker_pin')
+            ->select('storage_users.*', 'pin.pin_code as locker_pin', 'pin.is_used')
             ->orderBy('storage_users.created_at', 'desc');
 
         if ($query) {
@@ -27,8 +27,8 @@ class UserController extends Controller
             $storageUsers->where('storage_users.user', 'like', "%{$query}%");
         }
 
-        $deliveryUsers = $deliveryUsers->paginate(1, ['*'], 'page_delivery');
-        $storageUsers = $storageUsers->paginate(1, ['*'], 'page_storage');
+        $deliveryUsers = $deliveryUsers->paginate(10, ['*'], 'page_delivery');
+        $storageUsers = $storageUsers->paginate(10, ['*'], 'page_storage');
 
         return view('users.index', compact('deliveryUsers', 'storageUsers', 'query', 'section'));
     }

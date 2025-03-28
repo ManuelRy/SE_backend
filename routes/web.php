@@ -30,3 +30,7 @@ Route::post('/admin/verify-password', [AdminController::class, 'verifyPassword']
 
 Route::resource('users', UserController::class);
 Route::resource('lockers', LockerController::class);
+
+Route::get('/welcome', function () {
+    return view('welcome');
+});

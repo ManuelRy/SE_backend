@@ -10,11 +10,11 @@ class CreateDeliveryUsersTable extends Migration
     {
         Schema::create('delivery_users', function (Blueprint $table) {
             $table->id();
-            // $table->string('sender');
+            $table->string('sender');
             $table->string('receiver');
             $table->string('user_type')->default('Delivery');
             $table->string('package_size');
-            // $table->string('pin_code');
+            $table->string('chat_id');
             $table->string('locker_number');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();

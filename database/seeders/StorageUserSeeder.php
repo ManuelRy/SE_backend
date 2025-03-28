@@ -16,8 +16,8 @@ class StorageUserSeeder extends Seeder
         StorageUser::create([
             'user' => '098745637',
             'user_type' => 'Storage',
-            'storage_size' => 'Medium',
-            'locker_number' => 102,
+            'storage_size' => 'Large',
+            'locker_number' => 'L-01',
         ]);
     }
 }
